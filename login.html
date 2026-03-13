@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivLex - Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="logo">Civ<span>Lex</span></div>
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="cadastro.html">Cadastro</a>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <div class="card" style="max-width: 480px; margin: 0 auto;">
+
+      <h2>Acesse sua conta</h2>
+      <p style="margin-bottom: 24px;">Insira seus dados para entrar na plataforma.</p>
+
+      <!-- FORMULÁRIO DE LOGIN -->
+      <form id="formLogin" method="POST" action="#">
+
+        <!-- Tipo de usuário -->
+        <div class="form-group">
+          <label for="tipo">Tipo de usuário</label>
+          <select id="tipo" name="tipo">
+            <option value="">Selecione...</option>
+            <option value="beneficiario">Beneficiário</option>
+            <option value="advogado">Advogado</option>
+            <option value="admin">Administrador</option>
+          </select>
+          <span class="mensagem-erro"></span>
+        </div>
+
+        <!-- E-mail -->
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" />
+          <span class="mensagem-erro"></span>
+        </div>
+
+        <!-- Senha -->
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" placeholder="Sua senha" />
+          <span class="mensagem-erro"></span>
+          <button type="button" onclick="mostrarSenha('senha', this)"
+            style="background:none; border:none; color:#2563a8; font-size:13px; cursor:pointer; margin-top:4px;">
+            Mostrar
+          </button>
+        </div>
+
+        <!-- Lembrar / Esqueci -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <label style="font-size:13px; font-weight:normal; display:flex; align-items:center; gap:6px;">
+            <input type="checkbox" name="lembrar" /> Manter conectado
+          </label>
+          <a href="recuperar-senha.html" class="link">Esqueci minha senha</a>
+        </div>
+
+        <!-- Botão entrar -->
+        <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+
+      </form>
+
+      <hr />
+
+      <p style="text-align:center; font-size:14px;">
+        Não tem conta? <a href="cadastro.html" class="link">Cadastre-se aqui</a>
+      </p>
+
+    </div>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>&copy; 2025 CivLex — Atendimento Jurídico Gratuito</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("formLogin").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var tipo  = document.getElementById("tipo");
+      var email = document.getElementById("email");
+      var senha = document.getElementById("senha");
+      var valido = true;
+
+      // Limpa erros anteriores
+      limparErro(tipo);
+      limparErro(email);
+      limparErro(senha);
+
+      // Valida tipo
+      if (tipo.value === "") {
+        mostrarErro(tipo, "Selecione o tipo de usuário.");
+        valido = false;
+      }
+
+      // Valida email
+      if (email.value.trim() === "") {
+        mostrarErro(email, "O e-mail é obrigatório.");
+        valido = false;
+      } else if (!validarEmail(email.value)) {
+        mostrarErro(email, "Digite um e-mail válido.");
+        valido = false;
+      }
+
+      // Valida senha
+      if (senha.value.trim() === "") {
+        mostrarErro(senha, "A senha é obrigatória.");
+        valido = false;
+      }
+
+      // Se tudo certo, redireciona
+      if (valido) {
+        alert("Login realizado com sucesso! Redirecionando...");
+        window.location.href = "dashboard.html";
+      }
+    });
+  </script>
+
+</body>
+</html>

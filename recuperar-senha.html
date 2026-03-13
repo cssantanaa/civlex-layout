@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivLex - Recuperar Senha</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="logo">Civ<span>Lex</span></div>
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="cadastro.html">Cadastro</a>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <div class="card" style="max-width: 480px; margin: 0 auto;">
+
+      <!-- PASSO 1: Informar o e-mail -->
+      <div id="passo1">
+        <h2>Recuperar senha</h2>
+        <p style="margin-bottom: 24px;">Informe seu e-mail e enviaremos um link para redefinir sua senha.</p>
+
+        <form id="formRecuperar" method="POST" action="#">
+
+          <div class="form-group">
+            <label for="emailRecuperar">E-mail</label>
+            <input type="email" id="emailRecuperar" name="email" placeholder="seu@email.com" />
+            <span class="mensagem-erro"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">Enviar link de recuperação</button>
+
+        </form>
+
+        <hr />
+        <p style="text-align:center; font-size:14px;">
+          Lembrou a senha? <a href="login.html" class="link">Voltar ao login</a>
+        </p>
+      </div>
+
+      <!-- PASSO 2: Confirmação (aparece após enviar) -->
+      <div id="passo2" style="display:none; text-align:center;">
+        <p style="font-size:40px; margin-bottom:12px;">📧</p>
+        <h2>E-mail enviado!</h2>
+        <div class="alerta alerta-sucesso" style="margin:20px 0; text-align:left;">
+          Se o e-mail informado estiver cadastrado, você receberá um link para redefinir sua senha.
+          O link expira em <strong>30 minutos</strong>.
+        </div>
+        <p style="font-size:13px; color:#666; margin-bottom:20px;">
+          Não recebeu? Verifique sua caixa de spam ou
+          <a href="#" class="link" onclick="voltarPasso1()">tente novamente</a>.
+        </p>
+        <a href="login.html" class="btn btn-secondary">Voltar ao Login</a>
+      </div>
+
+      <!-- PASSO 3: Definir nova senha (simulação do link recebido por e-mail) -->
+      <div id="passo3" style="display:none;">
+        <h2>Criar nova senha</h2>
+        <p style="margin-bottom: 24px;">Escolha uma senha forte para sua conta.</p>
+
+        <form id="formNovaSenha" method="POST" action="#">
+
+          <div class="form-group">
+            <label for="novaSenha">Nova senha</label>
+            <input type="password" id="novaSenha" name="novaSenha" placeholder="Mínimo 8 caracteres" />
+            <span class="mensagem-erro"></span>
+            <button type="button" onclick="mostrarSenha('novaSenha', this)"
+              style="background:none; border:none; color:#2563a8; font-size:13px; cursor:pointer; margin-top:4px;">
+              Mostrar
+            </button>
+            <small style="display:block; color:#666; font-size:12px; margin-top:4px;">
+              Deve conter maiúscula, minúscula, número e símbolo.
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmarNovaSenha">Confirmar nova senha</label>
+            <input type="password" id="confirmarNovaSenha" name="confirmar" placeholder="Repita a senha" />
+            <span class="mensagem-erro"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">Salvar nova senha</button>
+
+        </form>
+      </div>
+
+      <!-- Botões para demo (navegação entre passos para visualização) -->
+      <hr style="margin-top:30px;" />
+      <p style="font-size:12px; color:#999; text-align:center; margin-bottom:8px;">
+        — Navegação de demonstração —
+      </p>
+      <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+        <button class="btn btn-secondary" style="font-size:12px; padding:6px 12px;" onclick="mostrarPasso(1)">
+          1. Informar e-mail
+        </button>
+        <button class="btn btn-secondary" style="font-size:12px; padding:6px 12px;" onclick="mostrarPasso(2)">
+          2. Confirmação
+        </button>
+        <button class="btn btn-secondary" style="font-size:12px; padding:6px 12px;" onclick="mostrarPasso(3)">
+          3. Nova senha
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>&copy; 2025 CivLex — Atendimento Jurídico Gratuito</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+
+    // Mostra apenas um passo por vez
+    function mostrarPasso(numero) {
+      document.getElementById("passo1").style.display = numero === 1 ? "" : "none";
+      document.getElementById("passo2").style.display = numero === 2 ? "" : "none";
+      document.getElementById("passo3").style.display = numero === 3 ? "" : "none";
+    }
+
+    // Volta para o passo 1
+    function voltarPasso1() {
+      mostrarPasso(1);
+    }
+
+    // Formulário do passo 1: enviar link
+    document.getElementById("formRecuperar").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var email = document.getElementById("emailRecuperar");
+      limparErro(email);
+
+      if (email.value.trim() === "") {
+        mostrarErro(email, "O e-mail é obrigatório.");
+        return;
+      }
+
+      if (!validarEmail(email.value)) {
+        mostrarErro(email, "Digite um e-mail válido.");
+        return;
+      }
+
+      // Simula o envio e mostra confirmação
+      mostrarPasso(2);
+    });
+
+    // Formulário do passo 3: salvar nova senha
+    document.getElementById("formNovaSenha").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var novaSenha   = document.getElementById("novaSenha");
+      var confirmar   = document.getElementById("confirmarNovaSenha");
+      var valido      = true;
+
+      limparErro(novaSenha);
+      limparErro(confirmar);
+
+      if (!validarSenha(novaSenha.value)) {
+        mostrarErro(novaSenha, "Senha fraca: use maiúscula, minúscula, número e símbolo.");
+        valido = false;
+      }
+
+      if (novaSenha.value !== confirmar.value) {
+        mostrarErro(confirmar, "As senhas não coincidem.");
+        valido = false;
+      }
+
+      if (valido) {
+        alert("Senha redefinida com sucesso! Faça login com sua nova senha.");
+        window.location.href = "login.html";
+      }
+    });
+
+  </script>
+
+</body>
+</html>

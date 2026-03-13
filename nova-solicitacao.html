@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivLex - Nova Solicitação</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="logo">Civ<span>Lex</span></div>
+    <nav>
+      <a href="dashboard.html">Meus Casos</a>
+      <a href="nova-solicitacao.html">Nova Solicitação</a>
+      <a href="login.html">Sair</a>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <div class="card" style="max-width: 700px; margin: 0 auto;">
+
+      <h2>Abrir Nova Solicitação</h2>
+      <p style="margin-bottom: 24px;">Descreva seu problema jurídico para que um advogado possa analisá-lo.</p>
+
+      <!-- Aviso de limite -->
+      <div class="alerta alerta-info" style="margin-bottom: 20px;">
+        Você pode ter no máximo <strong>3 casos ativos</strong>. Você possui <strong>2 ativos</strong> no momento.
+      </div>
+
+      <!-- FORMULÁRIO -->
+      <form id="formNova" method="POST" action="#">
+
+        <!-- Nome do beneficiário (somente leitura) -->
+        <div class="form-group">
+          <label for="nomeBenef">Beneficiário</label>
+          <input type="text" id="nomeBenef" name="beneficiario"
+                 value="Maria dos Santos" disabled
+                 style="background-color: #f0f2f5; color: #666;" />
+          <small style="color:#666; font-size:12px;">Preenchido automaticamente com o seu nome.</small>
+        </div>
+
+        <!-- Título -->
+        <div class="form-group">
+          <label for="titulo">Título do caso</label>
+          <input type="text" id="titulo" name="titulo"
+                 placeholder="Ex: Contestação de cobrança indevida na fatura"
+                 maxlength="100" />
+          <span class="mensagem-erro"></span>
+          <small style="color:#666; font-size:12px;">
+            <span id="contadorTitulo">0</span>/100 caracteres
+          </small>
+        </div>
+
+        <!-- Tipo de caso -->
+        <div class="form-group">
+          <label for="tipo">Tipo / Área do Direito</label>
+          <select id="tipo" name="tipo">
+            <option value="">Selecione a área jurídica...</option>
+            <option value="previdenciario">Previdenciário</option>
+            <option value="civil">Direito Civil</option>
+            <option value="pequenas-causas">Pequenas Causas / Juizado Especial</option>
+            <option value="familia">Direito de Família</option>
+            <option value="consumidor">Direito do Consumidor</option>
+            <option value="penal">Penal</option>
+            <option value="ambiental">Ambiental</option>
+            <option value="trabalhista">Trabalhista</option>
+          </select>
+          <span class="mensagem-erro"></span>
+          <small style="color:#666; font-size:12px;">O caso será direcionado ao advogado com esta especialidade.</small>
+        </div>
+
+        <!-- Descrição -->
+        <div class="form-group">
+          <label for="descricao">Descrição do problema</label>
+          <textarea id="descricao" name="descricao"
+                    placeholder="Descreva o que aconteceu, quando ocorreu, o que já tentou resolver e quais documentos você tem..."
+                    maxlength="3000"></textarea>
+          <span class="mensagem-erro"></span>
+          <small style="color:#666; font-size:12px;">
+            <span id="contadorDesc">0</span>/3000 caracteres
+          </small>
+        </div>
+
+        <!-- Documentos -->
+        <div class="form-group">
+          <label for="documentos">Documentos (opcional)</label>
+          <input type="file" id="documentos" name="documentos"
+                 accept=".png,.jpg,.jpeg,.pdf,.doc" multiple />
+          <small style="color:#666; font-size:12px;">
+            Formatos aceitos: PNG, JPG, PDF ou DOC. Máximo 5 MB por arquivo.
+            Você pode selecionar mais de um arquivo.
+          </small>
+        </div>
+
+        <!-- Botões -->
+        <div style="display:flex; gap:12px; margin-top:10px;">
+          <a href="dashboard.html" class="btn btn-secondary">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>&copy; 2025 CivLex — Atendimento Jurídico Gratuito</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Contadores de caracteres
+    contarCaracteres(document.getElementById("titulo"), "contadorTitulo", 100);
+    contarCaracteres(document.getElementById("descricao"), "contadorDesc", 3000);
+
+    // Validação do formulário
+    document.getElementById("formNova").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var titulo    = document.getElementById("titulo");
+      var tipo      = document.getElementById("tipo");
+      var descricao = document.getElementById("descricao");
+      var valido    = true;
+
+      // Limpa erros anteriores
+      limparErro(titulo);
+      limparErro(tipo);
+      limparErro(descricao);
+
+      if (titulo.value.trim() === "") {
+        mostrarErro(titulo, "O título é obrigatório.");
+        valido = false;
+      }
+
+      if (tipo.value === "") {
+        mostrarErro(tipo, "Selecione a área do direito.");
+        valido = false;
+      }
+
+      if (descricao.value.trim() === "") {
+        mostrarErro(descricao, "A descrição é obrigatória.");
+        valido = false;
+      }
+
+      if (valido) {
+        alert("Solicitação enviada com sucesso! Você será redirecionado para seus casos.");
+        window.location.href = "dashboard.html";
+      }
+    });
+  </script>
+
+</body>
+</html>

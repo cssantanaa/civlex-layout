@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivLex - Meus Casos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">Civ<span>Lex</span></div>
+    <nav>
+      <a href="dashboard.html">Meus Casos</a>
+      <a href="nova-solicitacao.html">Nova Solicitação</a>
+      <a href="login.html">Sair</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1>Meus Casos</h1>
+        <p>Acompanhe suas solicitações de atendimento jurídico.</p>
+      </div>
+      <a href="nova-solicitacao.html" class="btn btn-primary">+ Nova Solicitação</a>
+    </div>
+
+    <div class="alerta alerta-info">
+      Você pode ter no máximo <strong>3 casos ativos</strong> ao mesmo tempo. Atualmente você tem <strong>2 ativos</strong>.
+    </div>
+
+    <div class="card" style="padding: 16px 20px;">
+      <strong style="font-size:14px;">Filtrar por status:</strong>
+      <span style="margin-left:12px;">
+        <button class="btn btn-secondary" style="padding:6px 14px; font-size:13px;" onclick="filtrar('todos')">Todos</button>
+        <button class="btn btn-secondary" style="padding:6px 14px; font-size:13px;" onclick="filtrar('Em análise')">Em Análise</button>
+        <button class="btn btn-secondary" style="padding:6px 14px; font-size:13px;" onclick="filtrar('Em andamento')">Em Andamento</button>
+        <button class="btn btn-secondary" style="padding:6px 14px; font-size:13px;" onclick="filtrar('Encerrado')">Encerrado</button>
+      </span>
+    </div>
+
+    <div class="card">
+      <table id="tabelaCasos">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Título</th>
+            <th>Área</th>
+            <th>Data de Abertura</th>
+            <th>Advogado</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-status="Em andamento">
+            <td>001</td>
+            <td>Contestação de Cobrança Indevida</td>
+            <td>Civil</td>
+            <td>12/10/2025</td>
+            <td>Dr. Han Solo</td>
+            <td><span class="status status-andamento">Em andamento</span></td>
+            <td>
+              <a href="detalhes.html" class="link">Ver detalhes</a>
+            </td>
+          </tr>
+          <tr data-status="Em análise">
+            <td>002</td>
+            <td>Revisão de Benefício Previdenciário</td>
+            <td>Previdenciário</td>
+            <td>20/10/2025</td>
+            <td>—</td>
+            <td><span class="status status-analise">Em análise</span></td>
+            <td>
+              <a href="detalhes.html" class="link">Ver detalhes</a>
+              |
+              <a href="#" class="link" onclick="arquivar(this)">Arquivar</a>
+            </td>
+          </tr>
+          <tr data-status="Encerrado">
+            <td>003</td>
+            <td>Pedido de Pensão Alimentícia</td>
+            <td>Família</td>
+            <td>01/09/2025</td>
+            <td>Dra. Leia Organa</td>
+            <td><span class="status status-encerrado">Encerrado</span></td>
+            <td>
+              <a href="detalhes.html" class="link">Ver detalhes</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 CivLex — Atendimento Jurídico Gratuito</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function filtrar(statusEscolhido) {
+      var linhas = document.querySelectorAll("#tabelaCasos tbody tr");
+
+      linhas.forEach(function (linha) {
+        if (statusEscolhido === "todos") {
+          linha.style.display = "";
+        } else {
+          var statusLinha = linha.getAttribute("data-status");
+          if (statusLinha === statusEscolhido) {
+            linha.style.display = "";
+          } else {
+            linha.style.display = "none";
+          }
+        }
+      });
+    }
+
+    // Arquiva um caso (remove da tabela após confirmação)
+    function arquivar(link) {
+      var confirmar = confirm("Tem certeza que deseja arquivar esta solicitação?");
+      if (confirmar) {
+        var linha = link.closest("tr");
+        linha.remove();
+        alert("Solicitação arquivada com sucesso.");
+      }
+    }
+  </script>
+
+</body>
+</html>

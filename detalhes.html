@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivLex - Detalhes da Solicitação</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="logo">Civ<span>Lex</span></div>
+    <nav>
+      <a href="dashboard.html">Meus Casos</a>
+      <a href="nova-solicitacao.html">Nova Solicitação</a>
+      <a href="login.html">Sair</a>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+
+    <!-- Botão voltar -->
+    <p style="margin-bottom: 16px;">
+      <a href="dashboard.html" class="link">← Voltar para Meus Casos</a>
+    </p>
+
+    <!-- Título e status -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
+      <h1 style="font-size:22px;">Contestação de Cobrança Indevida</h1>
+      <span class="status status-andamento">Em andamento</span>
+    </div>
+
+    <!-- Informações do caso -->
+    <div class="card">
+      <h3>Informações do Caso</h3>
+      <hr />
+
+      <table style="font-size:14px;">
+        <tbody>
+          <tr>
+            <td style="font-weight:bold; width:180px; padding:10px 0; border-bottom:1px solid #eee;">Nº da Solicitação</td>
+            <td style="padding:10px 0; border-bottom:1px solid #eee;">#001</td>
+          </tr>
+          <tr>
+            <td style="font-weight:bold; padding:10px 0; border-bottom:1px solid #eee;">Área do Direito</td>
+            <td style="padding:10px 0; border-bottom:1px solid #eee;">Direito Civil</td>
+          </tr>
+          <tr>
+            <td style="font-weight:bold; padding:10px 0; border-bottom:1px solid #eee;">Beneficiário</td>
+            <td style="padding:10px 0; border-bottom:1px solid #eee;">Maria dos Santos</td>
+          </tr>
+          <tr>
+            <td style="font-weight:bold; padding:10px 0; border-bottom:1px solid #eee;">Advogado Responsável</td>
+            <td style="padding:10px 0; border-bottom:1px solid #eee;">Dr. Han Solo — OAB/AL 123456</td>
+          </tr>
+          <tr>
+            <td style="font-weight:bold; padding:10px 0; border-bottom:1px solid #eee;">Data de Abertura</td>
+            <td style="padding:10px 0; border-bottom:1px solid #eee;">12/10/2025 às 14:32</td>
+          </tr>
+          <tr>
+            <td style="font-weight:bold; padding:10px 0;">Última Atualização</td>
+            <td style="padding:10px 0;">28/10/2025 às 09:15</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Descrição do caso -->
+    <div class="card">
+      <h3>Descrição do Problema</h3>
+      <hr />
+      <p style="color:#333; line-height:1.7; font-size:14px;">
+        A beneficiária relata que a operadora de telefonia passou a cobrar serviços adicionais não contratados
+        a partir de agosto/2025, totalizando R$ 240,00 em três faturas consecutivas. Foram realizadas diversas
+        tentativas de contato com a empresa, porém sem resolução. A cliente possui os comprovantes das faturas
+        e protocolos de atendimento registrados junto à operadora.
+      </p>
+
+      <h3 style="margin-top:20px;">Documentos Anexados</h3>
+      <hr />
+      <ul style="list-style:none; margin-top:10px;">
+        <li style="padding:10px 0; border-bottom:1px solid #eee; font-size:14px;">
+          📄 <a href="#" class="link">fatura_agosto_2025.pdf</a> <span style="color:#999; font-size:12px;">(245 KB)</span>
+        </li>
+        <li style="padding:10px 0; border-bottom:1px solid #eee; font-size:14px;">
+          🖼 <a href="#" class="link">protocolo_atendimento.jpg</a> <span style="color:#999; font-size:12px;">(1.2 MB)</span>
+        </li>
+        <li style="padding:10px 0; font-size:14px;">
+          📄 <a href="#" class="link">fatura_setembro_2025.pdf</a> <span style="color:#999; font-size:12px;">(231 KB)</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Histórico do caso -->
+    <div class="card">
+      <h3>Histórico de Movimentações</h3>
+      <hr />
+      <ul style="list-style:none; margin-top:10px; font-size:14px;">
+        <li style="padding:10px 0; border-bottom:1px solid #eee;">
+          ✅ <strong>12/10/2025 às 14:32</strong> — Solicitação criada pela beneficiária.
+        </li>
+        <li style="padding:10px 0; border-bottom:1px solid #eee;">
+          👤 <strong>14/10/2025 às 09:00</strong> — Dr. Han Solo aceitou o caso. Status alterado para <em>Em Andamento</em>.
+        </li>
+        <li style="padding:10px 0; border-bottom:1px solid #eee;">
+          💬 <strong>15/10/2025 às 10:22</strong> — Advogado solicitou documentação complementar.
+        </li>
+        <li style="padding:10px 0;">
+          📋 <strong>16/10/2025 às 09:05</strong> — Advogado iniciou elaboração de notificação extrajudicial.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Comunicação / Feedback -->
+    <div class="card">
+      <h3>Comunicação com o Advogado</h3>
+      <hr style="margin-bottom:16px;" />
+
+      <!-- Área de mensagens -->
+      <div class="chat-box" id="chatBox">
+
+        <div class="mensagem">
+          <div class="autor">Dr. Han Solo (Advogado)</div>
+          <div class="texto">
+            Olá, Maria! Analisei os documentos enviados. As cobranças identificadas configuram prática abusiva
+            conforme o Código de Defesa do Consumidor (Art. 39, III). Poderia enviar também o contrato de prestação
+            de serviços com a operadora?
+          </div>
+          <div class="data">15/10/2025 às 10:22</div>
+        </div>
+
+        <div class="mensagem">
+          <div class="autor">Você (Maria dos Santos)</div>
+          <div class="texto">
+            Boa tarde, Dr. Han! Obrigada pelo retorno. Não possuo o contrato impresso, mas vou acessar minha
+            área do cliente no site e baixar o documento. Envio em seguida.
+          </div>
+          <div class="data">15/10/2025 às 14:08</div>
+        </div>
+
+        <div class="mensagem">
+          <div class="autor">Dr. Han Solo (Advogado)</div>
+          <div class="texto">
+            Recebi o contrato, obrigado! Não há previsão contratual para os serviços cobrados. Estou preparando
+            uma notificação extrajudicial com prazo de 10 dias para devolução dos valores.
+          </div>
+          <div class="data">16/10/2025 às 09:05</div>
+        </div>
+
+      </div>
+
+      <!-- Formulário de resposta -->
+      <form id="formResposta" method="POST" action="#">
+        <div class="form-group">
+          <label for="resposta">Sua resposta</label>
+          <textarea id="resposta" name="resposta" placeholder="Digite sua mensagem para o advogado..."
+                    maxlength="2000"></textarea>
+          <span class="mensagem-erro"></span>
+          <small style="color:#666; font-size:12px;">
+            <span id="contadorResposta">0</span>/2000 caracteres
+          </small>
+        </div>
+
+        <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+          <div>
+            <label style="font-size:13px; font-weight:bold; color:#444;">Anexar arquivo (opcional):</label>
+            <input type="file" name="anexo" accept=".pdf,.jpg,.jpeg,.png,.doc"
+                   style="font-size:13px; margin-left:8px;" />
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar Resposta</button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Botões de ação -->
+    <div class="card" style="padding:20px;">
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="dashboard.html" class="btn btn-secondary">← Voltar para Meus Casos</a>
+        <button class="btn btn-danger" onclick="arquivar()">Arquivar Solicitação</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>&copy; 2025 CivLex — Atendimento Jurídico Gratuito</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Contador de caracteres na resposta
+    contarCaracteres(document.getElementById("resposta"), "contadorResposta", 2000);
+
+    // Envio da resposta (adiciona mensagem na tela)
+    document.getElementById("formResposta").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var resposta = document.getElementById("resposta");
+
+      if (resposta.value.trim() === "") {
+        mostrarErro(resposta, "Escreva uma mensagem antes de enviar.");
+        return;
+      }
+
+      limparErro(resposta);
+
+      // Cria um novo bloco de mensagem e adiciona no chat
+      var chatBox = document.getElementById("chatBox");
+
+      var novaMensagem = document.createElement("div");
+      novaMensagem.className = "mensagem";
+      novaMensagem.innerHTML =
+        '<div class="autor">Você (Maria dos Santos)</div>' +
+        '<div class="texto">' + resposta.value + '</div>' +
+        '<div class="data">Agora mesmo</div>';
+
+      chatBox.appendChild(novaMensagem);
+      chatBox.scrollTop = chatBox.scrollHeight; // Rola para a última mensagem
+
+      // Limpa o campo
+      resposta.value = "";
+      document.getElementById("contadorResposta").textContent = "0/2000";
+
+      alert("Mensagem enviada com sucesso!");
+    });
+
+    // Arquivar solicitação
+    function arquivar() {
+      var confirmar = confirm("Tem certeza que deseja arquivar esta solicitação? Esta ação não pode ser desfeita.");
+      if (confirmar) {
+        alert("Solicitação arquivada com sucesso.");
+        window.location.href = "dashboard.html";
+      }
+    }
+  </script>
+
+</body>
+</html>
