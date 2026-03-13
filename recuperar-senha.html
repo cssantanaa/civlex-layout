@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
   <header>
     <div class="logo">Civ<span>Lex</span></div>
     <nav>
@@ -17,11 +16,9 @@
     </nav>
   </header>
 
-  <!-- CONTEÚDO PRINCIPAL -->
   <main>
     <div class="card" style="max-width: 480px; margin: 0 auto;">
 
-      <!-- PASSO 1: Informar o e-mail -->
       <div id="passo1">
         <h2>Recuperar senha</h2>
         <p style="margin-bottom: 24px;">Informe seu e-mail e enviaremos um link para redefinir sua senha.</p>
@@ -44,7 +41,6 @@
         </p>
       </div>
 
-      <!-- PASSO 2: Confirmação (aparece após enviar) -->
       <div id="passo2" style="display:none; text-align:center;">
         <p style="font-size:40px; margin-bottom:12px;">📧</p>
         <h2>E-mail enviado!</h2>
@@ -59,7 +55,6 @@
         <a href="login.html" class="btn btn-secondary">Voltar ao Login</a>
       </div>
 
-      <!-- PASSO 3: Definir nova senha (simulação do link recebido por e-mail) -->
       <div id="passo3" style="display:none;">
         <h2>Criar nova senha</h2>
         <p style="margin-bottom: 24px;">Escolha uma senha forte para sua conta.</p>
@@ -90,7 +85,6 @@
         </form>
       </div>
 
-      <!-- Botões para demo (navegação entre passos para visualização) -->
       <hr style="margin-top:30px;" />
       <p style="font-size:12px; color:#999; text-align:center; margin-bottom:8px;">
         — Navegação de demonstração —
@@ -110,7 +104,6 @@
     </div>
   </main>
 
-  <!-- RODAPÉ -->
   <footer>
     <p>&copy; 2025 CivLex — Atendimento Jurídico Gratuito</p>
   </footer>
@@ -118,19 +111,16 @@
   <script src="script.js"></script>
   <script>
 
-    // Mostra apenas um passo por vez
     function mostrarPasso(numero) {
       document.getElementById("passo1").style.display = numero === 1 ? "" : "none";
       document.getElementById("passo2").style.display = numero === 2 ? "" : "none";
       document.getElementById("passo3").style.display = numero === 3 ? "" : "none";
     }
 
-    // Volta para o passo 1
     function voltarPasso1() {
       mostrarPasso(1);
     }
 
-    // Formulário do passo 1: enviar link
     document.getElementById("formRecuperar").addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -147,11 +137,9 @@
         return;
       }
 
-      // Simula o envio e mostra confirmação
       mostrarPasso(2);
     });
 
-    // Formulário do passo 3: salvar nova senha
     document.getElementById("formNovaSenha").addEventListener("submit", function (e) {
       e.preventDefault();
 

@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
   <header>
     <div class="logo">Civ<span>Lex</span></div>
     <nav>
@@ -18,22 +17,18 @@
     </nav>
   </header>
 
-  <!-- CONTEÚDO PRINCIPAL -->
   <main>
     <div class="card" style="max-width: 700px; margin: 0 auto;">
 
       <h2>Abrir Nova Solicitação</h2>
       <p style="margin-bottom: 24px;">Descreva seu problema jurídico para que um advogado possa analisá-lo.</p>
 
-      <!-- Aviso de limite -->
       <div class="alerta alerta-info" style="margin-bottom: 20px;">
         Você pode ter no máximo <strong>3 casos ativos</strong>. Você possui <strong>2 ativos</strong> no momento.
       </div>
 
-      <!-- FORMULÁRIO -->
       <form id="formNova" method="POST" action="#">
 
-        <!-- Nome do beneficiário (somente leitura) -->
         <div class="form-group">
           <label for="nomeBenef">Beneficiário</label>
           <input type="text" id="nomeBenef" name="beneficiario"
@@ -42,7 +37,6 @@
           <small style="color:#666; font-size:12px;">Preenchido automaticamente com o seu nome.</small>
         </div>
 
-        <!-- Título -->
         <div class="form-group">
           <label for="titulo">Título do caso</label>
           <input type="text" id="titulo" name="titulo"
@@ -54,7 +48,6 @@
           </small>
         </div>
 
-        <!-- Tipo de caso -->
         <div class="form-group">
           <label for="tipo">Tipo / Área do Direito</label>
           <select id="tipo" name="tipo">
@@ -72,7 +65,6 @@
           <small style="color:#666; font-size:12px;">O caso será direcionado ao advogado com esta especialidade.</small>
         </div>
 
-        <!-- Descrição -->
         <div class="form-group">
           <label for="descricao">Descrição do problema</label>
           <textarea id="descricao" name="descricao"
@@ -84,7 +76,6 @@
           </small>
         </div>
 
-        <!-- Documentos -->
         <div class="form-group">
           <label for="documentos">Documentos (opcional)</label>
           <input type="file" id="documentos" name="documentos"
@@ -95,7 +86,6 @@
           </small>
         </div>
 
-        <!-- Botões -->
         <div style="display:flex; gap:12px; margin-top:10px;">
           <a href="dashboard.html" class="btn btn-secondary">Cancelar</a>
           <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
@@ -105,18 +95,16 @@
     </div>
   </main>
 
-  <!-- RODAPÉ -->
+
   <footer>
     <p>&copy; 2025 CivLex — Atendimento Jurídico Gratuito</p>
   </footer>
 
   <script src="script.js"></script>
   <script>
-    // Contadores de caracteres
     contarCaracteres(document.getElementById("titulo"), "contadorTitulo", 100);
     contarCaracteres(document.getElementById("descricao"), "contadorDesc", 3000);
 
-    // Validação do formulário
     document.getElementById("formNova").addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -125,7 +113,6 @@
       var descricao = document.getElementById("descricao");
       var valido    = true;
 
-      // Limpa erros anteriores
       limparErro(titulo);
       limparErro(tipo);
       limparErro(descricao);

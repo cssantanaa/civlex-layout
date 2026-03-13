@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
   <header>
     <div class="logo">Civ<span>Lex</span></div>
     <nav>
@@ -18,21 +17,17 @@
     </nav>
   </header>
 
-  <!-- CONTEÚDO PRINCIPAL -->
   <main>
 
-    <!-- Botão voltar -->
     <p style="margin-bottom: 16px;">
       <a href="dashboard.html" class="link">← Voltar para Meus Casos</a>
     </p>
 
-    <!-- Título e status -->
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
       <h1 style="font-size:22px;">Contestação de Cobrança Indevida</h1>
       <span class="status status-andamento">Em andamento</span>
     </div>
 
-    <!-- Informações do caso -->
     <div class="card">
       <h3>Informações do Caso</h3>
       <hr />
@@ -67,7 +62,6 @@
       </table>
     </div>
 
-    <!-- Descrição do caso -->
     <div class="card">
       <h3>Descrição do Problema</h3>
       <hr />
@@ -93,7 +87,6 @@
       </ul>
     </div>
 
-    <!-- Histórico do caso -->
     <div class="card">
       <h3>Histórico de Movimentações</h3>
       <hr />
@@ -113,12 +106,10 @@
       </ul>
     </div>
 
-    <!-- Comunicação / Feedback -->
     <div class="card">
       <h3>Comunicação com o Advogado</h3>
       <hr style="margin-bottom:16px;" />
 
-      <!-- Área de mensagens -->
       <div class="chat-box" id="chatBox">
 
         <div class="mensagem">
@@ -151,7 +142,6 @@
 
       </div>
 
-      <!-- Formulário de resposta -->
       <form id="formResposta" method="POST" action="#">
         <div class="form-group">
           <label for="resposta">Sua resposta</label>
@@ -175,7 +165,6 @@
       </form>
     </div>
 
-    <!-- Botões de ação -->
     <div class="card" style="padding:20px;">
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
         <a href="dashboard.html" class="btn btn-secondary">← Voltar para Meus Casos</a>
@@ -185,17 +174,14 @@
 
   </main>
 
-  <!-- RODAPÉ -->
   <footer>
     <p>&copy; 2025 CivLex — Atendimento Jurídico Gratuito</p>
   </footer>
 
   <script src="script.js"></script>
   <script>
-    // Contador de caracteres na resposta
     contarCaracteres(document.getElementById("resposta"), "contadorResposta", 2000);
 
-    // Envio da resposta (adiciona mensagem na tela)
     document.getElementById("formResposta").addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -208,7 +194,6 @@
 
       limparErro(resposta);
 
-      // Cria um novo bloco de mensagem e adiciona no chat
       var chatBox = document.getElementById("chatBox");
 
       var novaMensagem = document.createElement("div");
@@ -219,16 +204,13 @@
         '<div class="data">Agora mesmo</div>';
 
       chatBox.appendChild(novaMensagem);
-      chatBox.scrollTop = chatBox.scrollHeight; // Rola para a última mensagem
-
-      // Limpa o campo
+      chatBox.scrollTop = chatBox.scrollHeight; 
       resposta.value = "";
       document.getElementById("contadorResposta").textContent = "0/2000";
 
       alert("Mensagem enviada com sucesso!");
     });
 
-    // Arquivar solicitação
     function arquivar() {
       var confirmar = confirm("Tem certeza que deseja arquivar esta solicitação? Esta ação não pode ser desfeita.");
       if (confirmar) {

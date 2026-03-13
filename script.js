@@ -1,11 +1,4 @@
-/* ===========================
-   CIVLEX - JavaScript Global
-   =========================== */
 
-/* -----------------------------------------------
-   Função: mostrarErro
-   Exibe a mensagem de erro embaixo do campo
------------------------------------------------ */
 function mostrarErro(campo, mensagem) {
   campo.classList.add("erro");
   var span = campo.parentElement.querySelector(".mensagem-erro");
@@ -15,10 +8,6 @@ function mostrarErro(campo, mensagem) {
   }
 }
 
-/* -----------------------------------------------
-   Função: limparErro
-   Remove a mensagem de erro do campo
------------------------------------------------ */
 function limparErro(campo) {
   campo.classList.remove("erro");
   var span = campo.parentElement.querySelector(".mensagem-erro");
@@ -27,19 +16,10 @@ function limparErro(campo) {
   }
 }
 
-/* -----------------------------------------------
-   Função: validarEmail
-   Verifica se o email tem formato válido
------------------------------------------------ */
 function validarEmail(email) {
   return email.includes("@") && email.includes(".");
 }
 
-/* -----------------------------------------------
-   Função: validarSenha
-   Verifica se a senha tem pelo menos 8 caracteres,
-   letra maiúscula, minúscula, número e símbolo
------------------------------------------------ */
 function validarSenha(senha) {
   if (senha.length < 8) return false;
   if (!/[A-Z]/.test(senha)) return false;
@@ -49,15 +29,10 @@ function validarSenha(senha) {
   return true;
 }
 
-/* -----------------------------------------------
-   Função: aplicarMascaraCPF
-   Formata o CPF enquanto o usuário digita
-   Ex: 12345678901 → 123.456.789-01
------------------------------------------------ */
 function aplicarMascaraCPF(input) {
   input.addEventListener("input", function () {
-    var v = this.value.replace(/\D/g, ""); // Remove tudo que não é número
-    v = v.substring(0, 11);               // Limita a 11 dígitos
+    var v = this.value.replace(/\D/g, "");
+    v = v.substring(0, 11);
     v = v.replace(/(\d{3})(\d)/, "$1.$2");
     v = v.replace(/(\d{3})(\d)/, "$1.$2");
     v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
@@ -65,10 +40,6 @@ function aplicarMascaraCPF(input) {
   });
 }
 
-/* -----------------------------------------------
-   Função: buscarCEP
-   Busca o endereço pelo CEP usando a API ViaCEP
------------------------------------------------ */
 function buscarCEP(campoCEP) {
   var cep = campoCEP.value.replace(/\D/g, "");
   if (cep.length !== 8) return;
@@ -82,7 +53,6 @@ function buscarCEP(campoCEP) {
         alert("CEP não encontrado.");
         return;
       }
-      // Preenche os campos automaticamente
       var logradouro = document.getElementById("logradouro");
       var bairro     = document.getElementById("bairro");
       var cidade     = document.getElementById("cidade");
@@ -98,10 +68,6 @@ function buscarCEP(campoCEP) {
     });
 }
 
-/* -----------------------------------------------
-   Função: contarCaracteres
-   Atualiza o contador de caracteres em tempo real
------------------------------------------------ */
 function contarCaracteres(textarea, spanId, limite) {
   var span = document.getElementById(spanId);
   textarea.addEventListener("input", function () {
@@ -113,10 +79,6 @@ function contarCaracteres(textarea, spanId, limite) {
   });
 }
 
-/* -----------------------------------------------
-   Função: mostrarSenha
-   Alterna entre mostrar e ocultar a senha
------------------------------------------------ */
 function mostrarSenha(inputId, botao) {
   var input = document.getElementById(inputId);
   if (input.type === "password") {
